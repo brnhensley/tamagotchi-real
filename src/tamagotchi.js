@@ -27,12 +27,12 @@ export class Tamagotchi {
   }
 
   PoopScoop() {
-    this.numberOfPoops = 0;
+    this.numberOfPoops--;
   }
 
   CheckHappiness() {
     setInterval(() => {
-      this.happiness = ((this.food - this.poop - this.numberOfPoops) * 8);
+      this.happiness--;
       this.IsDead();
     },  1000);
   }
@@ -70,12 +70,18 @@ export class Tamagotchi {
   }
 
   IsDead() {
-    if (this.happiness === 0 || this.food === 0) {
-      let dead = "THAT MOTHER IS DEAD!"
+    if (this.happiness === 0) {
+      let dead = " DIED OF SADNESS!"
+      console.log(dead);
       return dead;
     } else if (this.numberOfPoops === 50) {
-      let drowned = "OH SHIT! IT DROWNED IN POOP!"
+      let drowned = " DROWNED IN POOP!"
+      console.log(drowned);
       return drowned;
+    } else if (this.food === 0) {
+      let starved = " STARVED!"
+      console.log(starved);
+      return starved;
     }
   }
 

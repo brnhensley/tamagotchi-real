@@ -1,20 +1,49 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <form class="pet-name" action="index.html" method="post">
-      <label for="submit">Name</label>
-      <input type="text" class="name" name="name">
-      <button type="submit" name="button">Submit</button>
-    </form>
-    <button id = "pet" name="pet" value="">
-    <label for="pet">Pet</label>
-    <button id = "feed" name="feed" value="">
-    <label for="feed">Feed</label>
-    <button id = "poopscoop" name="poopscoop" value="">
-    <label for="poopscoop">Scoop Poop</label>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title>Tamagotchi</title>
+
+</head>
+<body>
+
+  <h1>Tamagotchi</h1>
+
+  <form class="pet-name" action="index.html" method="post">
+    <label for="submit">Name</label>
+    <input type="text" class="name" name="name">
+    <button type="submit" name="button">Submit</button>
+  </form>
+
+<h1><span class='dead'></span></h1>
+
+  <div class="tama">
+    <img id="tama" alt="cute monster">
+    <h2>Happiness: <span id="happiness"></span></h2>
+    <h2>Energy: <span id="energy"></span></h2>
+    <h2>Hunger: <span id="food"></span></h2>
+    <h2>Number of poops: <span id="numberOfPoops"></span></h2>
+  </div>
+
+<br>
+<br>
+<br>
+
+  <div class="buttons">
+    <button class="btn btn-secondary" id="pet" name="pet" value="">
+      <label for="pet">Pet <span class="name-of-pet"></span></label>
+    </button>
+<br>
+    <button class="btn btn-secondary" id="feed" name="feed" value="">
+      <label for="feed">Feed <span class="name-of-pet"></span></label>
+    </button>
+<br>
+    <button class="btn btn-secondary" id="poopscoop" name="poopscoop" value="">
+      <label for="poopscoop">Scoop <span class="name-of-pet"></span>'s Poop</label>
+    </button>
+
+  </div>
+
+
+</body>
 </html>

@@ -1,0 +1,29 @@
+body {
+  background-color: skyblue;
+}
+
+.buttons {
+  display: none;
+}
+
+.tama {
+  display: none;
+  margin: 2%;
+}
+
+img#tama {
+  float: right;
+  border-style: solid;
+  border-radius: 15%;
+  border-width: 10px;
+  border-color: black;
+  margin: 5%;
+}
+
+h1 {
+  text-align: center;
+}
+
+button {
+  margin: 2%;
+}
