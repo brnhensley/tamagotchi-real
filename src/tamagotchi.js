@@ -1,7 +1,7 @@
 export class Tamagotchi {
   constructor(name) {
     this.name = name;
-    this.hunger = 10;
+    this.food = 10;
     this.poop = 0;
     this.numberOfPoops = 0;
     this.happiness = 20;
@@ -19,18 +19,26 @@ export class Tamagotchi {
     }, 1000);
   }
 
-  CheckHappiness() {
-    setInterval(() => {
-      this.happiness = ((this.hunger - this.poop - this.numberOfPoops) * 8);
-      this.IsDead();
-    },  1000);
-  }
-
   ActuallyPoop() {
     if(this.poop >= 10) {
       this.poop = 0;
       this.numberOfPoops++;
     }
+  }
+
+  PoopScoop() {
+    this.numberOfPoops = 0;
+  }
+
+  CheckHappiness() {
+    setInterval(() => {
+      this.happiness = ((this.food - this.poop - this.numberOfPoops) * 8);
+      this.IsDead();
+    },  1000);
+  }
+
+  Pet() {
+    this.happiness += 10;
   }
 
   LowerEnergy() {
@@ -51,22 +59,18 @@ export class Tamagotchi {
     }, 5000);
   }
 
-  PoopScoop() {
-    this.numberOfPoops = 0;
-  }
-
   SetHunger() {
     setInterval(() => {
-      this.hunger--;
+      this.food--;
     }, 1000)
   }
 
-  Pet() {
-    this.happiness += 10;
+  Feed() {
+    this.food += 20;
   }
 
   IsDead() {
-    if (this.happiness === 0 || this.hunger === 0) {
+    if (this.happiness === 0 || this.food === 0) {
       let dead = "THAT MOTHER IS DEAD!"
       return dead;
     } else if (this.numberOfPoops === 50) {

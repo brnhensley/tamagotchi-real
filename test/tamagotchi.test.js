@@ -10,13 +10,13 @@ describe('Tamagotchi', function() {
 
   it('should have a name and food level of 10 when created', function() {
     expect(sillyPet.name).toEqual("Silly Pet");
-    expect(sillyPet.hunger).toEqual(10);
+    expect(sillyPet.food).toEqual(10);
     expect(sillyPet.poop).toEqual(0);
   });
 
-  it('should have a hunger of 8 after 2001 millisecs', function() {
+  it('should have a food of 8 after 2001 millisecs', function() {
     jest.advanceTimersByTime(2001);
-    expect(sillyPet.hunger).toEqual(8);
+    expect(sillyPet.food).toEqual(8);
   });
 
   it('made poop', function() {
@@ -50,14 +50,14 @@ describe('Tamagotchi', function() {
     expect(sillyPet.IsDead()).toEqual("THAT MOTHER IS DEAD!")
   })
 
-  it('will check if died of hunger', function() {
-    sillyPet.hunger = 0;
+  it('will check if died of no food', function() {
+    sillyPet.food = 0;
     expect(sillyPet.IsDead()).toEqual("THAT MOTHER IS DEAD!")
   })
 
   it('will check if drowned in poo', function() {
     sillyPet.numberOfPoops = 50;
-    expect(sillyPet.IsDead()).toEqual( "OH SHIT! IT DROWNED IN POOP!")
+    expect(sillyPet.IsDead()).toEqual("OH SHIT! IT DROWNED IN POOP!")
   })
 
       // ADD TESTS FOR SLEEPING
