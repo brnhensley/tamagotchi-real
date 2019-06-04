@@ -37,7 +37,7 @@ $(document).ready(function() {
   });
 
   function AttributeTracker(tamagotchi) {
-    setInterval(() => {
+    let timer = setInterval(() => {
       $("#happiness").text(tamagotchi.happiness);
       $("#energy").text(tamagotchi.energy);
       $("#food").text(tamagotchi.food);
@@ -47,27 +47,14 @@ $(document).ready(function() {
         $(".tama").hide();
         $("form.pet-name").show();
         $(".dead").text(tamagotchi.name + tamagotchi.IsDead())
+        clearInterval(timer);
       }
       else if(tamagotchi.IsDead() === " DROWNED IN POOP!"){
-        $(".buttons").hide();
-        $(".tama").hide();
+        // $(".buttons").hide();
+        // $(".tama").hide();
         $("form.pet-name").show();
         $(".dead").text(tamagotchi.name + tamagotchi.IsDead())
-        $.ajax({
-          url: `https://api.giphy.com/v1/gifs/random?api_key=${process.env.API_KEY}&tag=poop&rating=PG-13`,
-          type: 'GET',
-          data: {
-            format: 'json'
-          },
-          success: function(response) {
-            console.log(response);
-            $('#errors').text("it worked");
-            $('#errors').html(`<img src="${response.data.images.original.url}">`);
-          },
-          error: function() {
-            $('#errors').text("There was an error processing your request. Please try again.");
-          }
-        });
+        clearInterval(timer);
       }
       else if(tamagotchi.IsDead() === " STARVED!") {
         $(".buttons").hide();
@@ -75,9 +62,27 @@ $(document).ready(function() {
         $("form.pet-name").show();
         $(".dead").text(tamagotchi.name + tamagotchi.IsDead())
         // delete tamagotchi;
-        console.log(tamagotchi.food);
+        clearInterval(timer);
       }
     }, 1000);
-
   }
+
+  $.ajax({
+    url: `https://api.giphy.com/v1/gifs/random?api_key=${process.env.API_KEY}&tag=poop&rating=PG-13`,
+    type: 'GET',
+    data: {
+      format: 'json'
+    },
+    success: function(response) {
+      $('#dead').text("it worked");
+      $('.gif').html(`<img src="${response.data.images.original.url}">`);
+      console.log("API WORKS" + response);
+    },
+    error: function() {
+      $('#errors').text("There was an error processing your request. Please try again.");
+    },
+  });
+
+
+
 });
