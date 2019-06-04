@@ -1,10 +1,10 @@
-// import $ from 'jquery';
+import $ from 'jquery';
 
 export class Tamagotchi {
   constructor(name) {
     this.name = name;
     this.food = 10;
-    this.poop = 9;
+    this.poop = 0;
     this.numberOfPoops = 0;
     this.happiness = 55;
     this.energy = 10;
@@ -49,7 +49,7 @@ export class Tamagotchi {
   LowerEnergy() {
     setInterval(() => {
       this.energy--;
-      if(this.energy < 0) {
+      if(this.energy <= 0) {
         this.FallAsleep()
       }
     }, 1000);

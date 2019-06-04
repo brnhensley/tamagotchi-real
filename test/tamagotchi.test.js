@@ -1,4 +1,5 @@
 import { Tamagotchi } from './../src/tamagotchi';
+import $ from 'jquery';
 
 describe('Tamagotchi', function() {
   let sillyPet;
@@ -30,36 +31,60 @@ describe('Tamagotchi', function() {
   });
 
   it('scooped poop', function() {
-    jest.advanceTimersByTime(19001);
+    jest.advanceTimersByTime(20001);
     sillyPet.PoopScoop();
-    expect(sillyPet.numberOfPoops).toEqual(0);
+    expect(sillyPet.numberOfPoops).toEqual(1);
   });
 
   it('should get happier when you pet it', function() {
     sillyPet.Pet();
-    expect(sillyPet.happiness).toEqual(30);
+    expect(sillyPet.happiness).toEqual(65);
   });
 
   it('will check the happiness', function() {
     jest.advanceTimersByTime(4001);
-    expect(sillyPet.happiness).toEqual(16);
+    expect(sillyPet.happiness).toEqual(51);
   });
 
   it('will check if died of unhappiness', function() {
     sillyPet.happiness = 0;
-    expect(sillyPet.IsDead()).toEqual("THAT MOTHER IS DEAD!")
-  })
+    expect(sillyPet.IsDeadSad()).toEqual(true)
+  });
 
   it('will check if died of no food', function() {
     sillyPet.food = 0;
-    expect(sillyPet.IsDead()).toEqual("THAT MOTHER IS DEAD!")
-  })
+    expect(sillyPet.IsDeadStarved()).toEqual(true)
+  });
 
   it('will check if drowned in poo', function() {
-    sillyPet.numberOfPoops = 50;
-    expect(sillyPet.IsDead()).toEqual("OH SHIT! IT DROWNED IN POOP!")
-  })
+    sillyPet.numberOfPoops = 5;
+    expect(sillyPet.IsDeadPoop()).toEqual(true)
+  });
 
-      // ADD TESTS FOR SLEEPING
+  it('will check if energy is lower', function() {
+    jest.advanceTimersByTime(9001);
+    expect(sillyPet.energy).toEqual(1);
+  });
+
+  it('will check if fell asleep', function() {
+    jest.advanceTimersByTime(10001);
+    expect(sillyPet.awake).toEqual(false);
+  });
+
+  it('will check if fell asleep', function() {
+    jest.advanceTimersByTime(15001);
+    expect(sillyPet.energy).toEqual(10);
+    expect(sillyPet.awake).toEqual(true);
+  });
+
+  it('will check if fed', function() {
+    sillyPet.Feed();
+    expect(sillyPet.food).toEqual(30);
+  });
+
+  // it('it will check ajax function', function() {
+  //   //Possibly untestable
+  //   sillyPet.DeadGif("ass");
+  // });
 
 });
