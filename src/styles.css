@@ -11,6 +11,11 @@ body {
   margin: 2%;
 }
 
+#errors {
+  text-align: center;
+  display: none;
+}
+
 img#tama {
   float: right;
   border-style: solid;

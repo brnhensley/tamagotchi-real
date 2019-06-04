@@ -3,6 +3,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
 
+const Dotenv = require('dotenv-webpack');
+
 module.exports = {
     mode: 'development',
     entry: './src/main.js',
@@ -42,6 +44,7 @@ module.exports = {
             Tooltip: "exports-loader?Tooltip!bootstrap/js/dist/tooltip",
             Util: 'exports-loader?Util!bootstrap/js/dist/util'
         }),
+        new Dotenv()
     ],
     module: {
         rules: [{

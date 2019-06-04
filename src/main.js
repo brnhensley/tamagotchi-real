@@ -42,7 +42,34 @@ $(document).ready(function() {
       $("#energy").text(tamagotchi.energy);
       $("#food").text(tamagotchi.food);
       $("#numberOfPoops").text(tamagotchi.numberOfPoops);
-      if (tamagotchi.IsDead() === " DIED OF SADNESS!" || tamagotchi.IsDead() === " DROWNED IN POOP!" || tamagotchi.IsDead() === " STARVED!") {
+      if(tamagotchi.IsDead() === " DIED OF SADNESS!") {
+        $(".buttons").hide();
+        $(".tama").hide();
+        $("form.pet-name").show();
+        $(".dead").text(tamagotchi.name + tamagotchi.IsDead())
+      }
+      else if(tamagotchi.IsDead() === " DROWNED IN POOP!"){
+        $(".buttons").hide();
+        $(".tama").hide();
+        $("form.pet-name").show();
+        $(".dead").text(tamagotchi.name + tamagotchi.IsDead())
+        $.ajax({
+          url: `https://api.giphy.com/v1/gifs/random?api_key=${process.env.API_KEY}&tag=poop&rating=PG-13`,
+          type: 'GET',
+          data: {
+            format: 'json'
+          },
+          success: function(response) {
+            console.log(response);
+            $('#errors').text("it worked");
+            $('#errors').html(`<img src="${response.data.images.original.url}">`);
+          },
+          error: function() {
+            $('#errors').text("There was an error processing your request. Please try again.");
+          }
+        });
+      }
+      else if(tamagotchi.IsDead() === " STARVED!") {
         $(".buttons").hide();
         $(".tama").hide();
         $("form.pet-name").show();
