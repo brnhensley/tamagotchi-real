@@ -43,6 +43,7 @@ $(document).ready(function() {
       $("#food").text(tamagotchi.food);
       $("#numberOfPoops").text(tamagotchi.numberOfPoops);
       if(tamagotchi.IsDead() === " DIED OF SADNESS!") {
+        DeadGif("sadness");
         $(".buttons").hide();
         $(".tama").hide();
         $("form.pet-name").show();
@@ -50,13 +51,15 @@ $(document).ready(function() {
         clearInterval(timer);
       }
       else if(tamagotchi.IsDead() === " DROWNED IN POOP!"){
-        // $(".buttons").hide();
-        // $(".tama").hide();
+        DeadGif("poop");
+        $(".buttons").hide();
+        $(".tama").hide();
         $("form.pet-name").show();
         $(".dead").text(tamagotchi.name + tamagotchi.IsDead())
         clearInterval(timer);
       }
       else if(tamagotchi.IsDead() === " STARVED!") {
+        DeadGif("starved");
         $(".buttons").hide();
         $(".tama").hide();
         $("form.pet-name").show();
@@ -65,23 +68,26 @@ $(document).ready(function() {
         clearInterval(timer);
       }
     }, 1000);
+    function DeadGif(deathcause){
+      $.ajax({
+        url: `https://api.giphy.com/v1/gifs/random?api_key=${process.env.API_KEY}&tag=${deathcause}&rating=PG-13`,
+        type: 'GET',
+        data: {
+          format: 'json'
+        },
+        success: function(response) {
+          $('.gif').html(`<img src="${response.data.images.original.url}">`);
+          $(".gif").show();
+          console.log("API WORKS" + response);
+        },
+        error: function() {
+          $('#errors').text("There was an error processing your request. Please try again.");
+        },
+      });
+
+    }
   }
 
-  $.ajax({
-    url: `https://api.giphy.com/v1/gifs/random?api_key=${process.env.API_KEY}&tag=poop&rating=PG-13`,
-    type: 'GET',
-    data: {
-      format: 'json'
-    },
-    success: function(response) {
-      $('#dead').text("it worked");
-      $('.gif').html(`<img src="${response.data.images.original.url}">`);
-      console.log("API WORKS" + response);
-    },
-    error: function() {
-      $('#errors').text("There was an error processing your request. Please try again.");
-    },
-  });
 
 
 
