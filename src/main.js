@@ -39,35 +39,29 @@ $(document).ready(function() {
       $("#energy").text(tamagotchi.energy);
       $("#food").text(tamagotchi.food);
       $("#numberOfPoops").text(tamagotchi.numberOfPoops);
-      if (tamagotchi.numberOfPoops)
 
-      if(tamagotchi.IsDead() === " DIED OF SADNESS!") {
+      if(tamagotchi.IsDeadSad()) {
         tamagotchi.DeadGif("sadness");
-        dyingLogic();
+        dyingLogic(" died of sadness");
       }
-      else if(tamagotchi.IsDead() === " DROWNED IN POOP!") {
+      else if(tamagotchi.IsDeadPoop()) {
         tamagotchi.DeadGif("poop");
-        dyingLogic();
+        dyingLogic(" drowned in poop");
       }
-      else if(tamagotchi.IsDead() === " STARVED!") {
+      else if(tamagotchi.IsDeadStarved()) {
         tamagotchi.DeadGif("starvation");
-        dyingLogic();
+        dyingLogic(" starved");
       }
 
-      function dyingLogic() {
+      function dyingLogic(deathType) {
         $(".buttons").hide();
         $(".tama").hide();
-        $("form.pet-name").show();
-        $(".dead").text(tamagotchi.name + tamagotchi.IsDead())
+        $(".dead").text(tamagotchi.name + deathType);
+
         clearInterval(timer);
       }
     }, 1000);
 
-
-
   }
-
-
-
 
 });

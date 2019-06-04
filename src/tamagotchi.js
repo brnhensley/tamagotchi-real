@@ -6,12 +6,13 @@ export class Tamagotchi {
     this.food = 10;
     this.poop = 9;
     this.numberOfPoops = 0;
-    this.happiness = 10;
+    this.happiness = 55;
     this.energy = 10;
     this.awake = true;
     this.SetHunger();
     this.MakePoop();
     this.CheckHappiness();
+    this.LowerEnergy();
   }
 
   MakePoop() {
@@ -29,13 +30,15 @@ export class Tamagotchi {
   }
 
   PoopScoop() {
+    if(this.numberOfPoops >= 1) {
     this.numberOfPoops--;
+    }
   }
 
   CheckHappiness() {
     setInterval(() => {
       this.happiness--;
-      this.IsDead();
+      this.IsDeadSad();
     },  1000);
   }
 
@@ -46,10 +49,10 @@ export class Tamagotchi {
   LowerEnergy() {
     setInterval(() => {
       this.energy--;
-    }, 2000);
-    if(this.energy < 0) {
-      this.FallAsleep()
-    }
+      if(this.energy < 0) {
+        this.FallAsleep()
+      }
+    }, 1000);
   }
 
   FallAsleep()
@@ -71,16 +74,24 @@ export class Tamagotchi {
     this.food += 20;
   }
 
-  IsDead() {
+  IsDeadSad() {
     if (this.happiness === 0) {
-      let dead = " DIED OF SADNESS!"
-      return dead;
-    } else if (this.numberOfPoops === 5) {
-      let drowned = " DROWNED IN POOP!"
-      return drowned;
-    } else if (this.food === 0) {
-      let starved = " STARVED!"
-      return starved;
+      // let dead = " DIED OF SADNESS!"
+      return true;
+    }
+  }
+
+  IsDeadPoop() {
+    if (this.numberOfPoops === 5) {
+      // let drowned = " DROWNED IN POOP!"
+      return true;
+    }
+  }
+
+  IsDeadStarved() {
+    if (this.food === 0) {
+      // let starved = " STARVED!"
+      return true;
     }
   }
 
