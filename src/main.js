@@ -42,30 +42,26 @@ $(document).ready(function() {
       $("#energy").text(tamagotchi.energy);
       $("#food").text(tamagotchi.food);
       $("#numberOfPoops").text(tamagotchi.numberOfPoops);
-      if(tamagotchi.IsDead() === " DIED OF SADNESS!") {
-        DeadGif("sadness");
+
+      function dyingLogic() {
         $(".buttons").hide();
         $(".tama").hide();
         $("form.pet-name").show();
         $(".dead").text(tamagotchi.name + tamagotchi.IsDead())
         clearInterval(timer);
+      }
+
+      if(tamagotchi.IsDead() === " DIED OF SADNESS!") {
+        DeadGif("sadness");
+        dyingLogic();
       }
       else if(tamagotchi.IsDead() === " DROWNED IN POOP!"){
         DeadGif("poop");
-        $(".buttons").hide();
-        $(".tama").hide();
-        $("form.pet-name").show();
-        $(".dead").text(tamagotchi.name + tamagotchi.IsDead())
-        clearInterval(timer);
+        dyingLogic();
       }
       else if(tamagotchi.IsDead() === " STARVED!") {
         DeadGif("starved");
-        $(".buttons").hide();
-        $(".tama").hide();
-        $("form.pet-name").show();
-        $(".dead").text(tamagotchi.name + tamagotchi.IsDead())
-        // delete tamagotchi;
-        clearInterval(timer);
+        dyingLogic();
       }
     }, 1000);
     function DeadGif(deathcause){

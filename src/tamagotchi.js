@@ -1,10 +1,10 @@
 export class Tamagotchi {
   constructor(name) {
     this.name = name;
-    this.food = 1;
+    this.food = 10;
     this.poop = 9;
-    this.numberOfPoops = 4;
-    this.happiness = 10;
+    this.numberOfPoops = 0;
+    this.happiness = 1;
     this.energy = 10;
     this.awake = true;
     this.SetHunger();
@@ -74,7 +74,7 @@ export class Tamagotchi {
       let dead = " DIED OF SADNESS!"
       console.log(dead);
       return dead;
-    } else if (this.numberOfPoops === 50) {
+    } else if (this.numberOfPoops === 5) {
       let drowned = " DROWNED IN POOP!"
       console.log(drowned);
       return drowned;
