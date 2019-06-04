@@ -23,17 +23,14 @@ $(document).ready(function() {
 
   $("button#pet").click(function() {
     tamagotchi.Pet();
-    console.log(tamagotchi.happiness);
   });
 
   $("button#feed").click(function() {
     tamagotchi.Feed();
-    console.log(tamagotchi.food);
   });
 
   $("button#poopscoop").click(function() {
     tamagotchi.PoopScoop();
-    console.log(tamagotchi.numberOfPoops);
   });
 
   function AttributeTracker(tamagotchi) {
@@ -55,15 +52,16 @@ $(document).ready(function() {
         DeadGif("sadness");
         dyingLogic();
       }
-      else if(tamagotchi.IsDead() === " DROWNED IN POOP!"){
+      else if(tamagotchi.IsDead() === " DROWNED IN POOP!") {
         DeadGif("poop");
         dyingLogic();
       }
       else if(tamagotchi.IsDead() === " STARVED!") {
-        DeadGif("starved");
+        DeadGif("starvation");
         dyingLogic();
       }
     }, 1000);
+
     function DeadGif(deathcause){
       $.ajax({
         url: `https://api.giphy.com/v1/gifs/random?api_key=${process.env.API_KEY}&tag=${deathcause}&rating=PG-13`,
@@ -74,14 +72,13 @@ $(document).ready(function() {
         success: function(response) {
           $('.gif').html(`<img src="${response.data.images.original.url}">`);
           $(".gif").show();
-          console.log("API WORKS" + response);
         },
         error: function() {
           $('#errors').text("There was an error processing your request. Please try again.");
         },
       });
-
     }
+
   }
 
 

@@ -72,15 +72,12 @@ export class Tamagotchi {
   IsDead() {
     if (this.happiness === 0) {
       let dead = " DIED OF SADNESS!"
-      console.log(dead);
       return dead;
     } else if (this.numberOfPoops === 5) {
       let drowned = " DROWNED IN POOP!"
-      console.log(drowned);
       return drowned;
     } else if (this.food === 0) {
       let starved = " STARVED!"
-      console.log(starved);
       return starved;
     }
   }
